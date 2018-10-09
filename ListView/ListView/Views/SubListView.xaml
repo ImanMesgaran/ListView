@@ -1,0 +1,35 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage
+    x:Class="ListView.Views.SubListView"
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:behaviors="clr-namespace:Prism.Behaviors;assembly=Prism.Forms"
+    xmlns:prism="clr-namespace:Prism.Mvvm;assembly=Prism.Forms"
+    prism:ViewModelLocator.AutowireViewModel="True">
+
+    <ListView
+        x:Name="MyListView"
+        CachingStrategy="RecycleElement"
+        ItemsSource="{Binding Cards}">
+
+        <ListView.ItemTemplate>
+            <DataTemplate>
+                <ViewCell Height="40">
+                    <Label
+                        Margin="15,0,0,0"
+                        Text="{Binding Name}"
+                        TextColor="Black"
+                        VerticalTextAlignment="Center" />
+                </ViewCell>
+            </DataTemplate>
+        </ListView.ItemTemplate>
+
+        <ListView.Behaviors>
+            <behaviors:EventToCommandBehavior
+                Command="{Binding ItemTappedCommand}"
+                EventArgsParameterPath="Item"
+                EventName="ItemTapped" />
+        </ListView.Behaviors>
+    </ListView>
+
+</ContentPage>
