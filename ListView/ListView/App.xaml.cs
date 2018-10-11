@@ -38,6 +38,7 @@ namespace ListView
             containerRegistry.RegisterForNavigation<MainPage>();
             containerRegistry.RegisterForNavigation<MainListView,MainListViewViewModel>();
             containerRegistry.RegisterForNavigation<SubListView,SubListViewViewModel>();
+            containerRegistry.RegisterForNavigation<NewsPage>();
         }
     }
 }

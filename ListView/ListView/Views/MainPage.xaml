@@ -9,6 +9,8 @@
         <Label Text="Nested ListView Sample" />
 
         <Button Command="{Binding GotoMainListPageCommand}" Text="Goto Main ListView" />
+
+        <Button Command="{Binding GotoNewsPageCommand}" Text="Goto News Page" />
     </StackLayout>
 
 </ContentPage>

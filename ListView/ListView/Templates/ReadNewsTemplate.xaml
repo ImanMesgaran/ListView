@@ -1,0 +1,32 @@
+﻿<?xml version="1.0" encoding="UTF-8" ?>
+<ViewCell
+    x:Class="ListView.Templates.ReadNewsTemplate"
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    Height="50">
+
+    <ViewCell.View>
+
+        <Label VerticalOptions="CenterAndExpand">
+            <!--  LineBreakMode="WordWrap"  -->
+            <Label.FormattedText>
+                <FormattedString>
+                    <!--<Span
+                        FontAttributes="Bold"
+                        FontFamily="{StaticResource FontAwesomeProSolid}"
+                        FontSize="Large"
+                        Text="&#xf00c;"
+                        TextColor="DarkOrange" />-->
+                    <Span
+                        FontAttributes="Bold"
+                        FontSize="Large"
+                        Text="ICON + "
+                        TextColor="DarkOrange" />
+
+                    <Span Text="Read News" TextColor="CornflowerBlue" />
+
+                </FormattedString>
+            </Label.FormattedText>
+        </Label>
+    </ViewCell.View>
+</ViewCell>

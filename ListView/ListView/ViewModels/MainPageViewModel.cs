@@ -19,6 +19,15 @@ namespace ListView.ViewModels
             await NavigationService.NavigateAsync("MainListView");
         }
 
+        private DelegateCommand _gotoNewsPageCommand;
+        public DelegateCommand GotoNewsPageCommand =>
+            _gotoNewsPageCommand ?? (_gotoNewsPageCommand = new DelegateCommand(ExecuteGotoNewsPageCommand));
+
+        async void ExecuteGotoNewsPageCommand()
+        {
+            await NavigationService.NavigateAsync("NewsPage");
+        }
+
         public MainPageViewModel(INavigationService navigationService)
             : base(navigationService)
         {

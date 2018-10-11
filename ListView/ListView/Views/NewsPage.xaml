@@ -1,0 +1,132 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage
+    x:Class="ListView.Views.NewsPage"
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:behaviors="clr-namespace:Prism.Behaviors;assembly=Prism.Forms"
+    xmlns:prism="clr-namespace:Prism.Mvvm;assembly=Prism.Forms"
+    xmlns:templates="clr-namespace:ListView.Templates;assembly=ListView"
+    x:Name="NewsPageSource"
+    prism:ViewModelLocator.AutowireViewModel="True">
+
+    <ContentPage.Resources>
+        <ResourceDictionary>
+
+            <!--  Comment: Data Template for Organization that the user has Loged-In Before.  -->
+            <DataTemplate x:Key="ReadNews">
+                <templates:ReadNewsTemplate BaseContext="{Binding BindingContext, Source={x:Reference NewsPageSource}}" />
+            </DataTemplate>
+
+            <!--  Comment: Data Template for Normal Organizations.  -->
+            <DataTemplate x:Key="UnReadNews">
+                <templates:UnReadNewsTemplate BaseContext="{Binding BindingContext, Source={x:Reference NewsPageSource}}" />
+            </DataTemplate>
+
+            <!--  Comment: Define Valid/Invalid Data Templates for the ListView.  -->
+            <templates:NewsHeaderDataTemplateSelector
+                x:Key="NewsHeaderTemplateSelector"
+                ReadNewsTemplate="{StaticResource ReadNews}"
+                UnReadNewsTemplate="{StaticResource UnReadNews}" />
+
+        </ResourceDictionary>
+    </ContentPage.Resources>
+
+    <ListView
+        x:Name="HomeGroupedView"
+        CachingStrategy="RecycleElement"
+        GroupDisplayBinding="{Binding Key}"
+        HasUnevenRows="True"
+        IsGroupingEnabled="True"
+        IsPullToRefreshEnabled="True"
+        ItemsSource="{Binding NewsGroupedWithSpan}"
+        SelectionMode="None">
+        <!--  GroupHeaderTemplate="{StaticResource NewsHeaderTemplateSelector}"  -->
+
+        <!--<ListView.Behaviors>
+        -->
+        <!--  Comment: Turn ListView "ItemTapped" Event to "ItemTappedCommand" Command.  -->
+        <!--
+            <behaviors:EventToCommandBehavior
+                Command="{Binding ItemTappedCommand}"
+                EventArgsParameterPath="Item"
+                EventName="ItemTapped" />
+        </ListView.Behaviors>-->
+
+
+        <!--  Group Header Template  -->
+        <ListView.GroupHeaderTemplate>
+            <DataTemplate>
+                <ViewCell Height="45">
+                    <StackLayout
+                        Padding="5"
+                        BackgroundColor="CornflowerBlue"
+                        HorizontalOptions="FillAndExpand"
+                        Orientation="Horizontal"
+                        VerticalOptions="FillAndExpand">
+                        <Label
+                            Margin="20,0,0,0"
+                            FontFamily="{StaticResource FontAwesomeProLight}"
+                            FontSize="Large"
+                            Text="{Binding Key.Icon}"
+                            TextColor="{Binding Key.Color}"
+                            VerticalOptions="CenterAndExpand" />
+
+                        <Label
+                            Margin="20,0,0,0"
+                            Text="{Binding Key.Key}"
+                            TextColor="{Binding Key.Color}"
+                            VerticalOptions="CenterAndExpand" />
+
+                        <!--
+                            Text="{Binding Key}"
+                            FontFamily="{StaticResource OpenSansBold}"
+                        -->
+
+                        <!--<Label.FormattedText>
+                                <FormattedString>
+
+                                    <Span Text="{Binding Key}" />
+                                </FormattedString>
+                            </Label.FormattedText>-->
+
+
+                    </StackLayout>
+                </ViewCell>
+            </DataTemplate>
+        </ListView.GroupHeaderTemplate>
+
+
+
+        <!--  Item Template Section  -->
+        <ListView.ItemTemplate>
+            <DataTemplate>
+                <ViewCell>
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*" />
+                            <ColumnDefinition Width="50" />
+                        </Grid.ColumnDefinitions>
+                        <StackLayout Grid.Column="0" Margin="25,5,0,5">
+                            <Label Text="{Binding Name}" />
+                            <Label Text="{Binding Description}" />
+                        </StackLayout>
+
+                        <Label
+                            Grid.Column="1"
+                            Margin="0,0,15,0"
+                            FontAttributes="Bold"
+                            FontFamily="{StaticResource FontAwesomeProLight}"
+                            FontSize="40"
+                            HorizontalOptions="CenterAndExpand"
+                            HorizontalTextAlignment="End"
+                            Text="&#xf105;"
+                            VerticalOptions="CenterAndExpand" />
+
+                    </Grid>
+                </ViewCell>
+
+            </DataTemplate>
+        </ListView.ItemTemplate>
+    </ListView>
+
+</ContentPage>
