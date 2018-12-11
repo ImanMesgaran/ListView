@@ -19,6 +19,10 @@
         </ResourceDictionary>
     </ContentPage.Resources>
 
+    <ContentPage.ToolbarItems>
+        <ToolbarItem Command="{Binding PresentMaster}" Text="present" />
+    </ContentPage.ToolbarItems>
+
     <StackLayout HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
         <ListView
             x:Name="MyListView"

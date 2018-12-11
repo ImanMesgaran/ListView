@@ -36,8 +36,19 @@ namespace ListView.ViewModels
     public class MainListViewViewModel : ViewModelBase
     {
         private DelegateCommand<Chapter> _itemTappedCommand;
+
         public DelegateCommand<Chapter> ItemTappedCommand =>
             _itemTappedCommand ?? (_itemTappedCommand = new DelegateCommand<Chapter>(ExecuteItemTappedCommand));
+
+        private DelegateCommand _presentMasterCommand;
+
+        public DelegateCommand PresentMaster =>
+            _presentMasterCommand ?? (_presentMasterCommand = new DelegateCommand(ExecutePresentMaster));
+
+        void ExecutePresentMaster()
+        {
+
+        }
 
         async void ExecuteItemTappedCommand(Chapter parameter)
         {
