@@ -7,7 +7,6 @@ namespace ListView.Views
         public MyMasterDetailPage()
         {
             InitializeComponent();
-            
         }
     }
 }
